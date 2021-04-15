@@ -5,6 +5,8 @@
  */
 package app.model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Rober
@@ -15,7 +17,7 @@ public class Student {
     private String lastname;
     private String secondLastname;
     private String name;
-    private Integer grade;
+    private BigDecimal grade;
 
     public Student(String id, String lastname, String secundLastname, String name) {
         this.id = id;
@@ -57,11 +59,11 @@ public class Student {
         this.name = name;
     }
 
-    public Integer getGrade() {
+    public BigDecimal getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(BigDecimal grade) {
         this.grade = grade;
     }
 
