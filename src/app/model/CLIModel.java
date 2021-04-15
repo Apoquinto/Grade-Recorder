@@ -5,6 +5,7 @@
  */
 package app.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
@@ -57,7 +58,7 @@ public class CLIModel {
         
         for (String[] gradeData : gradesData) {
             try{
-                scoreStudent(gradeData[0], Integer.parseInt(gradeData[1]));                
+                scoreStudent(gradeData[0], new BigDecimal(gradeData[1]));                
             }
             catch(Exception e){
                 scoreStudent(gradeData[0], null);
@@ -69,7 +70,7 @@ public class CLIModel {
         fileHandler.writeFile(studentsList);
     }
     
-    public boolean scoreStudent(String id, Integer score){
+    public boolean scoreStudent(String id, BigDecimal score){
         boolean result = false;
         ArrayList<Student> students = getStudentsList();
         
