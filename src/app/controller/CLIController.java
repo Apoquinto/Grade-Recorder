@@ -5,6 +5,8 @@
  */
 package app.controller;
 
+import java.math.BigDecimal;
+
 import app.model.CLIModel;
 import app.view.Dashboard;
 import app.view.LoginView;
@@ -52,8 +54,8 @@ public class CLIController {
             case "calificar":
                 dashboard.score();
                 try {
-                    Integer cal = Integer.parseInt(dashboard.getScore());
-                    if(cal > 0 && cal <= 100){
+                    BigDecimal cal = new BigDecimal(dashboard.getScore());
+                    if(cal.compareTo(new BigDecimal(0)) > 1 && cal.compareTo(new BigDecimal(100)) <= 0){
                         if(model.scoreStudent(dashboard.getId(), cal)){
                             dashboard.success();
                         }
