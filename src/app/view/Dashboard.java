@@ -69,7 +69,7 @@ public class Dashboard extends CLIView{
     }
     
     public void invalidScore(){
-        setMsg(errorMessage("La calificacion debe ser entera, no se admiten decimales."));
+        setMsg(errorMessage("Error al capturar la calificación, recuerde que debe tratarse de un número."));
     }
     
     public void help(){

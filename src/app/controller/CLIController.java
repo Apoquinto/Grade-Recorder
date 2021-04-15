@@ -55,7 +55,7 @@ public class CLIController {
                 dashboard.score();
                 try {
                     BigDecimal cal = new BigDecimal(dashboard.getScore());
-                    if(cal.compareTo(new BigDecimal(0)) > 1 && cal.compareTo(new BigDecimal(100)) <= 0){
+                    if(cal.compareTo(new BigDecimal(0)) > 0 && cal.compareTo(new BigDecimal(100)) <= 0){
                         if(model.scoreStudent(dashboard.getId(), cal)){
                             dashboard.success();
                         }
