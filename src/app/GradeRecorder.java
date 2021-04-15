@@ -7,7 +7,6 @@ package app;
 
 import app.controller.CLIController;
 import app.model.CLIModel;
-import app.view.CLIView;
 
 /**
  *

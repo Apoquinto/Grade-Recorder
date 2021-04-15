@@ -33,7 +33,6 @@ public class CLIController {
     public void loginController(){
         login.load();
         if(!model.userAuthentication(login.getUser(), login.getPass())){
-            login.clear();
             login.setMsg(login.errorMessage("Usuario y/o contra incorrectos."));
             loginController();
         }
@@ -47,6 +46,7 @@ public class CLIController {
     public void evalCommand(String command){
         switch (command) {
             case "/q":
+                model.generateRecord();
                 dashboard.exit();
                 break;
             case "calificar":

@@ -18,40 +18,55 @@ public class CLIModel {
     private String currentUser;
     private Map<String, String> users = new HashMap<String, String>();
     private ArrayList<Student> studentsList = new ArrayList<>();
-
+    private FileHandler fileHandler = new FileHandler();
+    
     public CLIModel() {
         this.currentUser = "";
         this.users = loadUsers();
         this.studentsList = loadStudents();
+        loadGrades();
     }
 
     public Map<String, String> loadUsers(){
         Map<String, String> users = new HashMap<>();
+        ArrayList<String[]> data = fileHandler.readUsers(); 
         
-        users.put("Apoquinto", "test");
+        for (String[] user : data) {
+            users.put(user[0], user[1]);
+        }
+        
+        users.put("Admin", "Admin");
         
         return users;
     }
     
     public ArrayList<Student> loadStudents(){
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Student> StudentList = new ArrayList<>();
+        ArrayList<String[]> students = fileHandler.readStudents(); 
         
-        Student Apoquinto = new Student("16003312", "Llanes", "Montero", "Roberto Carlos");
-        students.add(Apoquinto);
-
-        Student test = new Student("16003321", "Montero", "Llanes", "Carlos Llanes");
-        test.setGrade(100);
-        students.add(test);
+        for (String[] studentData : students) {
+            Student tempStudent = new Student(studentData[0], studentData[1], studentData[2], studentData[3]);
+            StudentList.add(tempStudent);
+        }
         
-        Student test2 = new Student("16003358", "Guerrero", "Torres", "Ruperto");
-        test2.setGrade(80);
-        students.add(test2);
-
-        Student test3 = new Student("15781000", "Fuentes", "Pech", "Maria Angelica");
-        test3.setGrade(65);
-        students.add(test3);
+        return StudentList;
+    }
+    
+    public void loadGrades(){
+        ArrayList<String[]> gradesData = fileHandler.readGrades(); 
         
-        return students;
+        for (String[] gradeData : gradesData) {
+            try{
+                scoreStudent(gradeData[0], Integer.parseInt(gradeData[1]));                
+            }
+            catch(Exception e){
+                scoreStudent(gradeData[0], null);
+            }
+        }
+    }
+    
+    public void generateRecord(){
+        fileHandler.writeFile(studentsList);
     }
     
     public boolean scoreStudent(String id, Integer score){

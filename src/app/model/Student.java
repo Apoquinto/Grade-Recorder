@@ -65,6 +65,10 @@ public class Student {
         this.grade = grade;
     }
 
+    public String toRecord(){
+        return getId() + "," + getGrade() + "\n";
+    }
+    
     @Override
     public String toString() {
         return "[" + getId() + "]" + getLastname() + " " + getSecondLastname() + " " + getName();
